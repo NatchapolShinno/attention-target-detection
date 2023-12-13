@@ -12,7 +12,8 @@ from lib.pytorch_convolutional_rnn import convolutional_rnn
 import argparse
 import os
 import numpy as np
-from scipy.misc import imresize
+# from scipy.misc import imresize
+from skimage.transform import resize
 import warnings
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -111,7 +112,7 @@ def test():
                         multi_hot = (multi_hot > 0).float() * 1 # make GT heatmap as binary labels
                         multi_hot = misc.to_numpy(multi_hot)
 
-                        scaled_heatmap = imresize(deconv[b_i].squeeze(), (output_resolution, output_resolution), interp = 'bilinear')
+                        scaled_heatmap = resize(deconv[b_i].squeeze(), (output_resolution, output_resolution), mode='reflect', anti_aliasing=True)
                         auc_score = evaluation.auc(scaled_heatmap, multi_hot)
                         AUC.append(auc_score)
 

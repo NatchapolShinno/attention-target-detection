@@ -12,7 +12,8 @@ import matplotlib as mpl
 mpl.use('Agg')
 from matplotlib import cm
 import matplotlib.pyplot as plt
-from scipy.misc import imresize
+# from scipy.misc import 
+from skimage.transform import resize
 
 import os
 import glob
@@ -199,8 +200,10 @@ class GazeFollow(Dataset):
             img = 255 - imutils.unnorm(img.numpy()) * 255
             img = np.clip(img, 0, 255)
             plt.imshow(np.transpose(img, (1, 2, 0)))
-            plt.imshow(imresize(gaze_heatmap, (self.input_size, self.input_size)), cmap='jet', alpha=0.3)
-            plt.imshow(imresize(1 - head_channel.squeeze(0), (self.input_size, self.input_size)), alpha=0.2)
+            # plt.imshow(
+            # from skimage.transform import resize(gaze_heatmap, (self.input_size, self.input_size)), cmap='jet', alpha=0.3)
+            # plt.imshow(
+            # from skimage.transform import resize(1 - head_channel.squeeze(0), (self.input_size, self.input_size)), alpha=0.2)
             plt.savefig('viz_aug.png')
 
         if self.test:
@@ -426,8 +429,10 @@ class VideoAttTarget_video(Dataset):
                 img = 255 - imutils.unnorm(images[i].numpy()) * 255
                 img = np.clip(img, 0, 255)
                 plt.imshow(np.transpose(img, (1, 2, 0)))
-                plt.imshow(imresize(heatmaps[i], (self.input_size, self.input_size)), cmap='jet', alpha=0.3)
-                plt.imshow(imresize(1 - head_channels[i].squeeze(0), (self.input_size, self.input_size)), alpha=0.2)
+                # plt.imshow(
+                # from skimage.transform import resize(heatmaps[i], (self.input_size, self.input_size)), cmap='jet', alpha=0.3)
+                # plt.imshow(
+                # from skimage.transform import resize(1 - head_channels[i].squeeze(0), (self.input_size, self.input_size)), alpha=0.2)
                 plt.savefig(os.path.join('debug', 'viz_%d_inout=%d.png' % (i, gaze_inouts[i])))
                 plt.close('all')
 
