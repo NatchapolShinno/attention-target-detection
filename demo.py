@@ -10,14 +10,11 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from PIL import Image
 # from scipy.misc import imresize
-import matplotlib.animation as animation
 
 from model import ModelSpatial
 from utils import imutils, evaluation
 from config import *
 
-fig = plt.figure()
-frames = []
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--model_weights', type=str, help='model weights', default='model_demo.pt')
@@ -91,7 +88,7 @@ def run():
             # vis
             plt.close()
             fig = plt.figure()
-            # fig.canvas.manager.window.move(0,0)
+            fig.canvas.manager.window.move(0,0)
             plt.axis('off')
             plt.imshow(frame_raw)
 
@@ -108,17 +105,10 @@ def run():
                     plt.plot((norm_p[0]*width,(head_box[0]+head_box[2])/2), (norm_p[1]*height,(head_box[1]+head_box[3])/2), '-', color=(0,1,0,1))
             else:
                 plt.imshow(norm_map, cmap = 'jet', alpha=0.2, vmin=0, vmax=255)
-            # Capture the current figure as an image and append to frames
-            img = np.frombuffer(fig.canvas.tostring_rgb(), dtype=np.uint8)
-            img = img.reshape(fig.canvas.get_width_height()[::-1] + (3,))
-            frames.append(img)
-        # plt.show(block=False)
-        # plt.pause(0.2)
-        # Save individual frames
-        for i, frame in enumerate(frames):
-            plt.imshow(frame)
-            plt.axis('off')
-            plt.savefig(f'/content/attention-target-detection/frame_output/frame_{i:04d}.png')
+
+            plt.show(block=False)
+            plt.pause(0.2)
+
         print('DONE!')
 
 
