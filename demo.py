@@ -106,8 +106,8 @@ def run():
             else:
                 plt.imshow(norm_map, cmap = 'jet', alpha=0.2, vmin=0, vmax=255)
 
-            plt.show(block=False)
-            plt.pause(0.2)
+        plt.show(block=False)
+        plt.pause(0.2)
 
         print('DONE!')
 
