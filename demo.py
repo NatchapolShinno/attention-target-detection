@@ -9,7 +9,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from PIL import Image
-from scipy.misc import imresize
+# from scipy.misc import imresize
 
 from model import ModelSpatial
 from utils import imutils, evaluation
