@@ -88,7 +88,7 @@ def run():
             # vis
             plt.close()
             fig = plt.figure()
-            fig.canvas.manager.window.move(0,0)
+            # fig.canvas.manager.window.move(0,0)
             plt.axis('off')
             plt.imshow(frame_raw)
 
