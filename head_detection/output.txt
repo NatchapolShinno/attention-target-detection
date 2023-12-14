@@ -1,0 +1,5 @@
+/Users/shinno/attention-target-detection/head_detection/frame_input/00119121.jpg, 745, 208, 833, 295
+/Users/shinno/attention-target-detection/head_detection/frame_input/00119121.jpg, 79, 632, 204, 757
+/Users/shinno/attention-target-detection/head_detection/frame_input/00119121.jpg, 745, 208, 833, 295
+/Users/shinno/attention-target-detection/head_detection/frame_input/pip install opencv-python tensorflow
+
