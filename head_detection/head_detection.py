@@ -3,7 +3,7 @@ import numpy as np
 import tensorflow as tf
 
 # Load SSD model
-ssd_model = tf.saved_model.load("/Users/shinno/attention-target-detection/head_detection")
+ssd_model = tf.saved_model.load("/Users/shinno/attention-target-detection/head_detection/ssd_mobilenet_v2_fpnlite_320x320_coco17_tpu-8/saved_model/")
 
 def preprocess_image(image):
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
