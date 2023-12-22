@@ -81,12 +81,19 @@ def run():
             raw_hm = raw_hm.squeeze()
 
             # heat intensity 
-            max_intensity = np.max(raw_hm)
-            print("Maximum Intensity:", max_intensity)
-            min_intensity = np.min(raw_hm)
-            print("Minimum Intensity:", min_intensity)
-            mean_intensity = np.mean(raw_hm)
-            print("Mean Intensity:", mean_intensity)
+            center_size = 20  # Adjust
+            
+            # find the indices of the center region
+            center_start = (64 - center_size) // 2
+            center_end = center_start + center_size
+
+            # extract the center region
+            center_region = raw_hm[center_start:center_end, center_start:center_end]
+
+            # find the maximum value in the center region
+            max_value = np.max(center_region)
+
+            print("Maximum value in the center region:", max_value)
             
             inout = inout.cpu().detach().numpy()
             inout = 1 / (1 + np.exp(-inout))
