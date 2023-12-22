@@ -9,8 +9,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from PIL import Image
-# from scipy.misc import imresize
-from skimage.transform import resize
+from scipy.misc import imresize
 
 from model import ModelSpatial
 from utils import imutils, evaluation
@@ -80,16 +79,24 @@ def run():
             # heatmap modulation
             raw_hm = raw_hm.cpu().detach().numpy() * 255
             raw_hm = raw_hm.squeeze()
+
+            # heat intencity 
+            max_intensity = np.max(raw_hm)
+            print("Maximum Intensity:", max_intensity)
+            min_intensity = np.min(raw_hm)
+            print("Minimum Intensity:", min_intensity)
+            mean_intensity = np.mean(raw_hm)
+            print("Mean Intensity:", mean_intensity)
+            
             inout = inout.cpu().detach().numpy()
             inout = 1 / (1 + np.exp(-inout))
             inout = (1 - inout) * 255
-            norm_map = resize(raw_hm, (height, width), mode='reflect', anti_aliasing=True) - inout
-            # norm_map = Image.fromarray(raw_hm).resize(size=(height, width)) - inout
+            norm_map = imresize(raw_hm, (height, width)) - inout
 
             # vis
             plt.close()
             fig = plt.figure()
-            # fig.canvas.manager.window.move(0,0)
+            fig.canvas.manager.window.move(0,0)
             plt.axis('off')
             plt.imshow(frame_raw)
 
