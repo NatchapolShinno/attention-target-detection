@@ -80,7 +80,7 @@ def run():
             raw_hm = raw_hm.cpu().detach().numpy() * 255
             raw_hm = raw_hm.squeeze()
 
-            # heat intencity 
+            # heat intensity 
             max_intensity = np.max(raw_hm)
             print("Maximum Intensity:", max_intensity)
             min_intensity = np.min(raw_hm)
@@ -97,7 +97,7 @@ def run():
             # vis
             plt.close()
             fig = plt.figure()
-            fig.canvas.manager.window.move(0,0)
+            # fig.canvas.manager.window.move(0,0) # Doesn't work in Collab
             plt.axis('off')
             plt.imshow(frame_raw)
 
