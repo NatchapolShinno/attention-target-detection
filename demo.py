@@ -79,22 +79,6 @@ def run():
             # heatmap modulation
             raw_hm = raw_hm.cpu().detach().numpy() * 255
             raw_hm = raw_hm.squeeze()
-
-            # heat intensity 
-            center_size = 20  # Adjust
-            
-            # find the indices of the center region
-            center_start = (64 - center_size) // 2
-            center_end = center_start + center_size
-
-            # extract the center region
-            center_region = raw_hm[center_start:center_end, center_start:center_end]
-
-            # find the maximum value in the center region
-            max_value = np.max(center_region)
-
-            print("Maximum value in the center region:", max_value)
-            
             inout = inout.cpu().detach().numpy()
             inout = 1 / (1 + np.exp(-inout))
             inout = (1 - inout) * 255
@@ -120,7 +104,7 @@ def run():
                     ax.add_patch(circ)
                     plt.plot((norm_p[0]*width,(head_box[0]+head_box[2])/2), (norm_p[1]*height,(head_box[1]+head_box[3])/2), '-', color=(0,1,0,1))
             else:
-                plt.imshow(norm_map, cmap = 'jet', alpha=0.2, vmin=0, vmax=255)
+                plt.imshow(norm_map, cmap = 'turbo', alpha=0.2, vmin=0, vmax=255)
 
             plt.show(block=False)
             plt.pause(0.2)

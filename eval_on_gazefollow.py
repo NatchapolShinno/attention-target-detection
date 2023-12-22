@@ -10,7 +10,8 @@ from utils import imutils, evaluation
 import argparse
 import os
 import numpy as np
-from scipy.misc import imresize
+# from scipy.misc import imresize
+from skimage.transform import resize
 import warnings
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -75,7 +76,7 @@ def test():
                 valid_gaze = valid_gaze[valid_gaze != -1].view(-1,2)
                 # AUC: area under curve of ROC
                 multi_hot = imutils.multi_hot_targets(cont_gaze[b_i], imsize[b_i])
-                scaled_heatmap = imresize(val_gaze_heatmap_pred[b_i], (imsize[b_i][1], imsize[b_i][0]), interp = 'bilinear')
+                scaled_heatmap = resize(val_gaze_heatmap_pred[b_i], (imsize[b_i][1], imsize[b_i][0]), mode='reflect', anti_aliasing=True)
                 auc_score = evaluation.auc(scaled_heatmap, multi_hot)
                 AUC.append(auc_score)
                 # min distance: minimum among all possible pairs of <ground truth point, predicted point>
