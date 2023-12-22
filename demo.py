@@ -9,7 +9,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from PIL import Image
-from scipy.misc import imresize
+from skimage.transform import resize
 
 from model import ModelSpatial
 from utils import imutils, evaluation
@@ -91,7 +91,8 @@ def run():
             inout = inout.cpu().detach().numpy()
             inout = 1 / (1 + np.exp(-inout))
             inout = (1 - inout) * 255
-            norm_map = imresize(raw_hm, (height, width)) - inout
+            norm_map = resize(raw_hm, (height, width), mode='reflect', anti_aliasing=True) - inout
+            
 
             # vis
             plt.close()
