@@ -36,7 +36,6 @@ def _get_transform():
 
 def test():
     transform = _get_transform()
-
     # Prepare data
     print("Loading Data")
     val_dataset = VideoAttTarget_video(videoattentiontarget_val_data, videoattentiontarget_val_label,
