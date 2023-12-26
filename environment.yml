@@ -49,8 +49,9 @@ dependencies:
   - pycparser=2.19
   - pyparsing=2.4.6
   - pyqt=5.9.2
-  - python=3.6
+  - python=3.10.12
   - python-dateutil=2.8.1
+  - pytorch=2.0.1
   - pytz=2019.3
   - qt=5.9.6
   - readline=7.0
@@ -64,7 +65,7 @@ dependencies:
   - tensorboardx=1.8
   - tk=8.6.8
   - tornado=5.1.1
-  - torchvision
+  - torchvision=0.15.2
   - werkzeug=1.0.0
   - wheel=0.31.1
   - xz=5.2.4
@@ -73,5 +74,4 @@ dependencies:
   - pip:
     - dlib==19.19.0
     - protobuf==3.7.0
-    - torch
 prefix: /home/shinno/anaconda3/envs/snakes
