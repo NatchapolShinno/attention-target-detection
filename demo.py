@@ -104,6 +104,10 @@ def run():
                     ax.add_patch(circ)
                     plt.plot((norm_p[0]*width,(head_box[0]+head_box[2])/2), (norm_p[1]*height,(head_box[1]+head_box[3])/2), '-', color=(0,1,0,1))
             else:
+                # Find the maximum value in the array
+                max_value = np.max(norm_map)
+                # Print the result
+                print("Pixel with maximum value in the heatmap:", max_value)
                 plt.imshow(norm_map, cmap = 'turbo', alpha=0.2, vmin=0, vmax=255)
 
             plt.show(block=False)
